@@ -12,7 +12,7 @@ from src.exception import CustomException
 from src.logger import logging
 import os
 
-from src.utils import save_object
+from src.utils import save_object #save the pickle file
 
 @dataclass
 class DataTransformationConfig:
@@ -22,10 +22,9 @@ class DataTransformation:
     def __init__(self):
         self.data_transformation_config=DataTransformationConfig()
 
-    def get_data_transformer_object(self):
+    def get_data_transformer_object(self): #Data Transformation
         '''
         This function si responsible for data trnasformation
-        
         '''
         try:
             numerical_columns = ["writing_score", "reading_score"]
@@ -74,6 +73,9 @@ class DataTransformation:
             raise CustomException(e,sys)
         
     def initiate_data_transformation(self,train_path,test_path):
+        """
+        start data transformation
+        """
 
         try:
             train_df=pd.read_csv(train_path)
