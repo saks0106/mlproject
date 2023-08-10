@@ -2,6 +2,7 @@ import sys
 import pandas as pd
 from src.exception import CustomException
 from src.utils import load_object
+import os
 
 
 class PredictPipeline:
@@ -9,11 +10,16 @@ class PredictPipeline:
         pass
 
     def predict(self,features):
+        """
+        Our 2 model pkl file
+        """
         try:
-            model_path=os.path.join("artifacts","model.pkl")
-            preprocessor_path=os.path.join('artifacts','preprocessor.pkl')
+            # model_path=os.path.join("artifacts","model.pkl")
+            # preprocessor_path=os.path.join('artifacts','preprocessor.pkl')
+            model_path = "artifacts\model.pkl"
+            preprocessor_path = 'artifacts\proprocessor.pkl'
             print("Before Loading")
-            model=load_object(file_path=model_path)
+            model=load_object(file_path=model_path) #make pickle file ready and load -->utils
             preprocessor=load_object(file_path=preprocessor_path)
             print("After Loading")
             data_scaled=preprocessor.transform(features)
@@ -50,6 +56,9 @@ class CustomData:
         self.writing_score = writing_score
 
     def get_data_as_data_frame(self):
+        """
+        user data from website is captured and returned as dict
+        """
         try:
             custom_data_input_dict = {
                 "gender": [self.gender],

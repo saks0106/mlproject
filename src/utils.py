@@ -1,5 +1,5 @@
 """
-utils will have all the common  packages, files used everywhere
+utils will have all the common  packages, files used everywhere in our project
 """
 
 import os
